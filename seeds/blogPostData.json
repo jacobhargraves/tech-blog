@@ -1,0 +1,14 @@
+[
+  {
+    "title" : "Using sequelize with nodejs",
+    "content" : "This is a tutorial on how to use sequelize with nodejs"
+  },
+  {
+    "title" : "How to use BootStrap",
+    "content" : "This is a tutorial on how to use BootStrap"
+  },
+  {
+    "title" : "Why I love nodejs",
+    "content" : "NodeJS allows a developer to write javascript on the server side of an application."
+  }
+]
