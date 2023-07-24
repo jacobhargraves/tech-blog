@@ -21,12 +21,16 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Dashboard</a></li>
+          <li><a href="/dashboard" class="nav-link px-2 text-white">Dashboard</a></li>
         </ul>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          {{#if logged_in}}
+          <a href="/dashboard">profile</a> |
+          <button class="btn btn-primary" id="logout">Logout</button>
+          {{else}}
+          <a href="/login" class="btn btn-primary">Login</a>
+          {{/if}}
         </div>
       </div>
     </div>
@@ -35,4 +39,7 @@
       {{{ body }}}
 </body>
 
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{/if}}
 </html>
