@@ -1,0 +1,22 @@
+<div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Tech Blog
+      </h3>
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">{{title}}</h2>
+        <p class="blog-post-meta">Created by: <a href="#">{{user.name}}</a> on {{format_date date_created}}</p>
+
+        <p>{{content}}</p>
+        <hr>
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-body-tertiary rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">The tech blog is for all sorts of developers, both seasoned and beginners, wanting to stay up-to-date with the most recent technology</p>
+        </div>
+      </div>
+    </div>
+</div>

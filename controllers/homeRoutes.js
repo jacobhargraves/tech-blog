@@ -27,4 +27,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/blogPosts/:id', async (req, res) => {
+    try {
+      const blogPostData = await BlogPost.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+        ],
+      });
+  
+      const blogPost = blogPostData.get({ plain: true });
+  
+      res.render('blogPost', {
+        ...blogPost
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 module.exports = router;
