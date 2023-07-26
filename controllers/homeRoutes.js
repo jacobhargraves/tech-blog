@@ -58,6 +58,21 @@ router.get('/blogPosts/:id', withAuth, async (req, res) => {
     }
   });
 
+  router.post('/blogPosts/:id/comment', withAuth, async (req, res) => {
+    try {
+      const blogPostId = req.params.id;
+      const newComment = await Comment.create({
+        ...req.body,
+        user_id: req.session.user_id,
+        blogPost_id: blogPostId
+      });
+  
+      res.status(200).json(newComment);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+  
   router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
