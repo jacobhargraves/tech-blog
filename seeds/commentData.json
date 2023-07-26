@@ -1,0 +1,14 @@
+[
+  {
+    "content" : "I'm a test post",
+    "blogPost_id" : "1"
+  },
+  {
+    "content" : "I'm another test post",
+    "blogPost_id" : "2"
+  },
+  {
+    "content" : "I'm a final test post",
+    "blogPost_id" : "3"
+  }
+]
