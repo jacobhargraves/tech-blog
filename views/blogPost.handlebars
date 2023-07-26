@@ -9,6 +9,13 @@
 
         <p>{{content}}</p>
         <hr>
+        <h4>Comments:</h4>
+        <div class="border">
+          {{#each comments as |comment|}}
+          <h5>By: {{comment.user.name}} on {{format_date comment.date_created}}</h5>
+          <p>{{comment.content}}</p>
+          {{/each}}
+        </div>
     </div>
 
     <div class="col-md-4">
