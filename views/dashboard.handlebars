@@ -11,11 +11,11 @@
     <form class="form new-post-form">
       <div class="form-group">
         <label for="blog-title">Blog title:</label>
-        <input class="form-input" type="text" id="blog-title" name="blog-title" />
+        <input class="form-control" type="text" id="blog-title" name="blog-title" />
       </div>
       <div class="form-group">
         <label for="blog-content">Blog Content:</label>
-        <textarea class="form-input" id="blog-content" name="blog-content"></textarea>
+        <textarea class="form-control" id="blog-content" name="blog-content"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -25,14 +25,37 @@
 
 {{#if blogPosts.length}}
 <div class="col-md-6 blog-list">
-  <h3>Current Projects:</h3>
+  <h3>My Posts:</h3>
   {{#each blogPosts as |blogPost|}}
   <div class="row mb-2">
     <div class="col-md-8">
       <h4><a href="/blogPosts/{{blogPost.id}}">{{blogPost.title}}</a></h4>
     </div>
     <div class="col-md-4">
-      <button class="btn btn-sm btn-danger" data-id="{{blogPost.id}}">DELETE</button>
+      <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal">
+        Update
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <form class="blog-update">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5"><textarea class="form-control" id="title-update">{{blogPost.title}}</textarea></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control"  id="content-update">{{blogPost.content}}</textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="saveUpdate" type="button" class="btn btn-sm btn-primary btn-update-save" data-id="{{blogPost.id}}">Save changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-danger btn-delete" data-id="{{blogPost.id}}" >DELETE</button>    
     </div>
   </div>
   {{/each}}

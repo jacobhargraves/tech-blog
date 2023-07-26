@@ -22,7 +22,10 @@ const newFormHandler = async (event) => {
 };
 
 const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  if (event.target.classList.contains('btn-delete')) {
     const id = event.target.getAttribute('data-id');
 
     const response = await fetch(`/api/blogPosts/${id}`, {
@@ -30,17 +33,50 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      const blogPostToDelete = event.target.closest('.row.mb-2');
+      blogPostToDelete.remove();
     } else {
       alert('Failed to delete post');
     }
   }
 };
 
+const updateButtonHandler = async (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const titleUpdate = document.querySelector('#title-update').value.trim();
+  const contentUpdate = document.querySelector('#content-update').value.trim();
+
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/blogPosts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ title: titleUpdate, content: contentUpdate }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert('Failed to update post');
+    }
+  }
+};
+
+
+document
+  .querySelectorAll('.btn-update-save')
+  .forEach((button) => button.addEventListener('click', updateButtonHandler));
+
 document
   .querySelector('.new-post-form')
   .addEventListener('submit', newFormHandler);
 
-document
-  .querySelector('.blog-list')
-  .addEventListener('click', delButtonHandler);
+  document
+  .querySelectorAll('.btn-delete')
+  .forEach((button) => button.addEventListener('click', delButtonHandler));
+
