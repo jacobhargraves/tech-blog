@@ -38,22 +38,24 @@
       <!-- Modal -->
       <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5"><textarea class="form-control" id="titleUpdate">{{blogPost.title}}</textarea></h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <form class="blog-update">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5"><textarea class="form-control" id="title-update">{{blogPost.title}}</textarea></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control"  id="content-update">{{blogPost.content}}</textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="saveUpdate" type="button" class="btn btn-sm btn-primary btn-update-save" data-id="{{blogPost.id}}">Save changes</button>
+              </div>
             </div>
-            <div class="modal-body">
-              <textarea class="form-control"  id="contentUpdate">{{blogPost.content}}</textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button id="saveUpdate" type="button" class="btn btn-sm btn-primary">Save changes</button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
-      <button class="btn btn-sm btn-danger" data-id="{{blogPost.id}}">DELETE</button>
+      <button class="btn btn-sm btn-danger btn-delete" data-id="{{blogPost.id}}" >DELETE</button>    
     </div>
   </div>
   {{/each}}
